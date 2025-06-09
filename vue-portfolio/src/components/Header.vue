@@ -70,6 +70,7 @@
         padding-right: 8.5%;
         padding-top: 3.2rem;
         padding-bottom: 3.2rem;
+        z-index: 1000;
     }
 
     #logo-name-container {

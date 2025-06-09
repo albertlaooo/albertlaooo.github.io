@@ -60,6 +60,7 @@
 
     #right-section {
         margin-left: auto;
+        z-index: 0;
     }
 
     /* PICTURE */
