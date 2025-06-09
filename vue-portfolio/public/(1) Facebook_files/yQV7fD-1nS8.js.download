@@ -1,8 +1,0 @@
-;/*FB_PKG_DELIM*/
-
-__d("FDSChevronDownFilled12Icon",["cr:14694"],(function(a,b,c,d,e,f,g){"use strict";g["default"]=b("cr:14694")}),98);
-__d("FDSChevronDownFilled12PNGIcon.react",["ix","fbicon"],(function(a,b,c,d,e,f,g,h){"use strict";a=d("fbicon")._(h("492446"),12);b=a;g["default"]=b}),98);
-__d("FDSShareExternalFilled16Icon",["cr:14085"],(function(a,b,c,d,e,f,g){"use strict";g["default"]=b("cr:14085")}),98);
-__d("FDSShareExternalFilled16PNGIcon.react",["ix","fbicon"],(function(a,b,c,d,e,f,g,h){"use strict";a=d("fbicon")._(h("509930"),16);b=a;g["default"]=b}),98);
-__d("validatePhoneNumber",[],(function(a,b,c,d,e,f){"use strict";function a(a,b){b=(b=b)!=null?b:7;return/^[+]?[0-9()\s-.#]{7,25}$/.test(a)&&a.replace(/[^0-9]/g,"").length>=b}f["default"]=a}),66);
-__d("PageUtils",["isStringNullOrEmpty","validatePhoneNumber"],(function(a,b,c,d,e,f,g){"use strict";var h="<<not-applicable>>";function a(a){return c("isStringNullOrEmpty")(a)?!1:a===h}function b(a){return a===""||c("validatePhoneNumber")(a)}function d(a){return c("isStringNullOrEmpty")(a)||a===h?"":a}g.NOT_APPLICABLE=h;g.isNotApplicableValue=a;g.isValidPhoneNumber=b;g.getApplicableValue=d}),98);
