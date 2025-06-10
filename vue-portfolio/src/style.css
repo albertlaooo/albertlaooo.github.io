@@ -23,6 +23,7 @@ body {
   --primary-color: #01EEFE;
   --bg-color: #20242D;
   --text-color: #FFFFFF;
+  --text-secondary-color: #d4d4d4;
   --border-radius: 0.5rem;
 }
 
@@ -44,6 +45,16 @@ h2 {
 
 h3 {
   font-size: 1.2rem;
+  color: var(--text-color);
+}
+
+h4 {
+  font-size: 1rem;
+  color: var(--text-secondary-color);
+}
+
+p {
+  font-size: 1rem;
   color: var(--text-color);
 }
 

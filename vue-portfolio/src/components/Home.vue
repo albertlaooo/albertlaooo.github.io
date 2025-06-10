@@ -1,8 +1,19 @@
 <script setup>
-    function downloadCV() {
-        alert("Not yet available.")
+    import { ref } from 'vue'
+
+    // Dynamic Greeting Message
+    const greeting = ref('')
+    const hour = new Date().getHours()
+
+    if (hour < 12) {
+    greeting.value = 'Good Morning'
+    } else if (hour < 18) {
+    greeting.value = 'Good Afternoon'
+    } else {
+    greeting.value = 'Good Evening'
     }
 
+    // Links
     function facebookBtn() {
         window.open('https://www.facebook.com/albertlaooo/');
     }
@@ -14,19 +25,23 @@
     function linkedInBtn() {
         window.open('https://www.linkedin.com/in/albert-lao-174bb135a/');
     }
+
+    function downloadCV() {
+        alert("Not yet available.")
+    }
 </script>
 
 <template>
     <section id="Home">
         <div id="home-container">
             <div id="left-section">
-                <h2>Hi, Good Evening</h2>
+                <h2>Hi, {{ greeting }}</h2>
                 <h1>I'm Albert Lao</h1>
                 <div style="display: flex; gap: 0.5rem;">
                     <h2>And I'm a</h2>
                     <h2 style="color: var(--primary-color);">Frontend Developer</h2>
                 </div>
-                <div style="display: flex; gap: 1rem; height: 3rem; margin-top: 15px; margin-bottom: 25px;">
+                <div style="display: flex; gap: 8px; height: 3rem; margin-top: 15px; margin-bottom: 25px;">
                     <img src="../assets/home/facebook.webp" id="facebook-btn" @click="facebookBtn">
                     <img src="../assets/home/instagram.webp" id="instagram-btn" @click="instagramBtn">
                     <img src="../assets/home/linked-in.webp" id="linked-in-btn" @click="linkedInBtn">

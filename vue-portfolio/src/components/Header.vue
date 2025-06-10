@@ -1,6 +1,15 @@
 <script setup>
     import { ref, onMounted, onUnmounted } from 'vue'
 
+    //Logo name button
+    function logoName() {
+        const homeSection = document.getElementById('Home')
+        if (homeSection) {
+            homeSection.scrollIntoView({ behavior: 'smooth' })
+        }
+}
+
+
     /* Detects user current section */
         const currentSection = ref('Home')
 
@@ -33,11 +42,12 @@
 
 <template>
     <div id="header-container">
-        <div id="logo-name-container">
+        <div @click="logoName"id="logo-name-container">
             <h2>Albert</h2>
             <h1 class="dot">.</h1>
+            <span class="tooltip">What's up?</span>
         </div>
-
+        
         <nav>
         <ul class="nav-links">
             <li :class="{ active: currentSection === 'Home' }">
@@ -54,6 +64,7 @@
             </li>
         </ul>
         </nav>
+        
     </div>
 </template>
 
@@ -69,7 +80,7 @@
         padding-left: 8.5%;
         padding-right: 8.5%;
         padding-top: 3.2rem;
-        padding-bottom: 3.2rem;
+        padding-bottom: 2.5rem;
         z-index: 1000;
     }
 
@@ -149,6 +160,24 @@
         text-shadow: 0 0 0px var(--primary-color),
                     0 0 2px var(--primary-color), 
                     0 0 20px var(--primary-color)
+    }
+
+    .tooltip {
+        visibility: hidden;
+        opacity: 0;
+        color: #fff;
+        padding: 4px 8px;
+        position: absolute;
+        bottom: -15px;
+        transition: opacity 0.3s;
+        font-size: 12px;
+        white-space: nowrap;
+        z-index: 1001;
+    }
+
+    #logo-name-container:hover .tooltip {
+        visibility: visible;
+        opacity: 1;
     }
 
 </style>
