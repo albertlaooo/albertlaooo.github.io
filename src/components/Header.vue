@@ -1,5 +1,6 @@
 <script setup>
-    import { ref, onMounted, onUnmounted } from 'vue'
+    import { ref, onMounted, onUnmounted} from 'vue'
+    import { isNavVisible } from '../store';
 
     //Logo name button
     function logoName() {
@@ -7,8 +8,7 @@
         if (homeSection) {
             homeSection.scrollIntoView({ behavior: 'smooth' })
         }
-}
-
+    }
 
     /* Detects user current section */
         const currentSection = ref('Home')
@@ -37,6 +37,9 @@
         window.removeEventListener('scroll', onScroll)
         })
 
+    function openMenu(){
+        isNavVisible.value = true;  
+    }
 
 </script>
 
@@ -48,23 +51,23 @@
             <span class="tooltip">What's up?</span>
         </div>
         
-        <nav>
-        <ul class="nav-links">
-            <li :class="{ active: currentSection === 'Home' }">
-            <a href="#Home">Home</a>
-            </li>
-            <li :class="{ active: currentSection === 'Portfolio' }">
-            <a href="#Portfolio">Portfolio</a>
-            </li>
-            <li :class="{ active: currentSection === 'Skills' }">
-            <a href="#Skills">Skills</a>
-            </li>
-            <li :class="{ active: currentSection === 'Contact' }">
-            <a href="#Contact">Contact</a>
-            </li>
-        </ul>
+        <nav id="not-menu-nav">
+            <ul class="nav-links">
+                <li :class="{ active: currentSection === 'Home' }">
+                <a href="#Home">Home</a>
+                </li>
+                <li :class="{ active: currentSection === 'Portfolio' }">
+                <a href="#Portfolio">Portfolio</a>
+                </li>
+                <li :class="{ active: currentSection === 'Skills' }">
+                <a href="#Skills">Skills</a>
+                </li>
+                <li :class="{ active: currentSection === 'Contact' }">
+                <a href="#Contact">Contact</a>
+                </li>
+            </ul>
         </nav>
-        
+            <img id="menu-btn" src="../assets/header/menu.svg" @click="openMenu"/>
     </div>
 </template>
 
@@ -81,7 +84,11 @@
         padding-right: 8.5%;
         padding-top: 3.2rem;
         padding-bottom: 2.5rem;
-        z-index: 1000;
+        z-index: 999;
+    }
+
+    #menu-btn {
+        display: none;
     }
 
     #logo-name-container {
@@ -106,7 +113,6 @@
         margin-bottom: 1.1rem;
     }
 
-
     /* Navigation Links */
     nav {
         display: flex;
@@ -116,7 +122,7 @@
 
     .nav-links {
         display: flex;
-        gap: 1.5rem;
+        gap: 2rem;
         height: 100%;
         margin: 0;
         padding: 0;
@@ -126,13 +132,13 @@
     .nav-links li {
         height: 100%;
         display: flex;
-        align-items: center; /* vertical center */
+        align-items: center;
     }
 
     .nav-links a {
-        flex: 1; /* fill the entire li */
+        flex: 1;
         display: flex;
-        align-items: center; /* vertically center text */
+        align-items: center;
         color: #FFFFFF;
         text-decoration: none;
         font-weight: 600;
@@ -142,13 +148,6 @@
         cursor: pointer;
         user-select: none;
         transition: ease-in-out 0.2s;
-    }
-
-    .nav-links a:hover {
-        transition: ease-in-out 0.2s;
-        text-shadow: 0 0 0px var(--primary-color),
-                    0 0 2px var(--primary-color), 
-                    0 0 20px var(--primary-color)
     }
 
     /* Active link styles */
@@ -180,4 +179,21 @@
         opacity: 1;
     }
 
+    /*///////////////////////////////////////////////////////// 
+    ///////////////////🔁 Mobile Layout //////////////////////
+    ////////////////////////////////////////////////////////*/
+    @media (max-width: 780px) {
+        #header-container {
+            padding-top: 2.8rem;
+        }
+
+        #not-menu-nav {
+            display: none;
+        }
+
+        #menu-btn {
+            display: flex; 
+            height: 32px;
+        }
+    }
 </style>

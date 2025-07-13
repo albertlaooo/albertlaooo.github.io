@@ -1,4 +1,5 @@
 <script setup>
+  import Menu from './components/Menu.vue'
   import Header from './components/Header.vue'
   import Home from './components/Home.vue'
   import Portfolio from './components/Portfolio.vue'
@@ -8,6 +9,7 @@
 
 <template>
   <div id="app">
+    <Menu />
     <Header />
     <Home />
     <Portfolio />
