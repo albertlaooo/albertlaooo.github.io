@@ -11,7 +11,7 @@
     #contact-container {
         display: flex;
         height: 100vh;
-        width: 100%;
+        width: 100vw;
         background-color: #db3b1e;
     }
 </style>

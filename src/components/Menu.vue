@@ -91,7 +91,7 @@
         right: 0;
         width: 65vw;
         height: 100vh;
-        background: var(--secondary-bg-color);
+        background: var(--fg-color);
         justify-content: center;
         transition: ease-in-out 0.2s;
     }

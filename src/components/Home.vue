@@ -97,7 +97,7 @@
 
     /* PICTURE */
     .picture-wrapper {
-        display: inline-block;
+        display: flex;
         animation: breathingGlow 5s ease-in-out infinite;
     }
 
@@ -175,6 +175,7 @@
         #left-section {
             order: 2;
             min-width: 0;
+            width: 100%;
         }
 
         #right-section {
@@ -184,6 +185,12 @@
             margin-bottom: 40px;
             min-width: 0;
             padding: 0;
+            width: 100%;
+        }
+
+        .picture-wrapper { 
+            justify-content: center;
+            
         }
 
         #picture {
@@ -202,7 +209,7 @@
         }
 
         p {
-            width: 350px;
+            width: 100%;
             margin-top: 35px;
             margin-bottom: 25px;
         }

@@ -13,20 +13,40 @@
     /* Detects user current section */
         const currentSection = ref('Home')
 
+        function isInViewport(el) {
+            const rect = el.getBoundingClientRect()
+            return (
+                rect.top >= 0 &&
+                rect.top <= window.innerHeight * 0.5
+            )
+        }
+
         function onScroll() {
-        const sections = document.querySelectorAll('section')
-        let closestSection = 'Home'
-        let closestOffset = Infinity
+            const Home = document.getElementById('Home')
+            const About = document.getElementById('About')
+            const Portfolio = document.getElementById('Portfolio')
+            const Skills = document.getElementById('Skills')
+            const Contact = document.getElementById('Contact')
 
-        sections.forEach((section) => {
-            const offset = Math.abs(section.getBoundingClientRect().top)
-            if (offset < closestOffset) {
-            closestOffset = offset
-            closestSection = section.id
+            if (Home && isInViewport(Home)) {
+                currentSection.value = 'Home';
             }
-        })
 
-        currentSection.value = closestSection
+            else if (About && isInViewport(About)) {
+                currentSection.value = 'About';
+            }
+
+            else if (Portfolio && isInViewport(Portfolio)) {
+                currentSection.value = 'Portfolio';
+            }
+
+            else if (Skills && isInViewport(Skills)) {
+                currentSection.value = 'Skills';
+            }
+
+            else if (Contact && isInViewport(Contact)) {
+                currentSection.value = 'Contact';
+            }
         }
 
         onMounted(() => {

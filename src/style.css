@@ -22,7 +22,7 @@ body {
 :root {
   --primary-color: #01EEFE;
   --bg-color: #20242D;
-  --secondary-bg-color: #282E3A;
+  --fg-color: #282E3A;
   --text-color: #FFFFFF;
   --text-secondary-color: #d4d4d4;
   --border-radius: 0.5rem;
@@ -46,11 +46,12 @@ h2 {
 
 h3 {
   font-size: 1.2rem;
+  color: var(--text-color);
 }
 
 h4 {
   font-size: 1rem;
-  color: var(--text-secondary-color);
+  color: var(--text-color);
 }
 
 p {
@@ -131,10 +132,38 @@ ul {
   box-shadow: 0 0px 12px var(--primary-color);
 }
 
-/* Responsive nav example */
-@media (max-width: 768px) {
-  .nav-links {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+.external-link {
+  display: inline-flex;
+  align-items: center; 
+  width: 160px;
+  gap: 10px;
+  transition: 0.1s ease-in-out;
+}
+
+.external-link:hover h4 {
+  transform: scale(1.02);
+  border-bottom: 2px solid white;
+  transition: 0.1s ease-in-out;
+}
+
+.external-link:hover img {
+  transition: 0.1s ease-in-out;
+  transform: scale(1.1);
+}
+
+.navigation-arrow {
+  transition: 0.1s ease-in-out;
+}
+
+.navigation-arrow:hover {
+  transform: scale(1.4);
+  transition: 0.1s ease-in-out;
+  
+  fill: var(--primary-color);
+}
+
+.navigation-arrow:active {
+  transform: scale(1);
+  fill: var(--primary-color);
+  transition: transform 0.1s ease-in-out;
 }
