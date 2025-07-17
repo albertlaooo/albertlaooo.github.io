@@ -146,7 +146,7 @@ ul {
   transition: 0.1s ease-in-out;
 }
 
-.external-link:hover img {
+.external-link:hover svg {
   transition: 0.1s ease-in-out;
   transform: scale(1.1);
 }
@@ -158,12 +158,9 @@ ul {
 .navigation-arrow:hover {
   transform: scale(1.4);
   transition: 0.1s ease-in-out;
-  
-  fill: var(--primary-color);
 }
 
 .navigation-arrow:active {
   transform: scale(1);
-  fill: var(--primary-color);
   transition: transform 0.1s ease-in-out;
 }

@@ -134,18 +134,26 @@
                 </div>
 
                 <div class="external-link" @click="openQuizton">
-                    <img src="/Portfolio/public/externalLink.svg">
+                    <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M23.25 16.7917V24.5417C23.25 25.2268 22.9778 25.8839 22.4934 26.3684C22.0089 26.8528 21.3518 27.125 20.6667 27.125H6.45833C5.77319 27.125 5.11611 26.8528 4.63164 26.3684C4.14717 25.8839 3.875 25.2268 3.875 24.5417V10.3333C3.875 9.64819 4.14717 8.99111 4.63164 8.50664C5.11611 8.02217 5.77319 7.75 6.45833 7.75H14.2083" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19.375 3.875H27.125V11.625" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12.9165 18.0833L27.1248 3.875" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                     <h4>View on Github</h4>
                 </div>
             </div>
 
             <div id="quizton-preview-container">
                 <div id="quizton-preview">
-                    <img class="navigation-arrow" src="/Portfolio/public/backArrow.svg" @click="backArrow">
+                    <svg class="navigation-arrow" @click="backArrow" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.3281 7.20276L10.0322 17.5L20.3281 27.7973L23.4226 24.7028L16.2185 17.5L23.4226 10.2973L20.3281 7.20276Z" fill="white"/>
+                    </svg>
                     <div class="browser-frame">
                          <img class="photo" :src="photos[currentPhoto]">
                     </div>
-                    <img class="navigation-arrow" src="/Portfolio/public/nextArrow.svg" @click="nextArrow">
+                    <svg class="navigation-arrow" @click="nextArrow" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.6727 27.7973L24.9685 17.5L14.6727 7.20276L11.5781 10.2973L18.7823 17.5L11.5781 24.7028L14.6727 27.7973Z" fill="white"/>
+                    </svg>
                 </div>
                 <h3>• • • •</h3>
             </div>
@@ -281,7 +289,7 @@
         align-items: center;
         width: 100%;
         aspect-ratio: 16 / 10;
-        background-image: url(/Portfolio/public/browserFrame.webp);
+        background-image: url(../assets/browserFrame.webp);
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
@@ -408,7 +416,7 @@
         align-items: center;
         width: 100%;
         aspect-ratio: 16 / 10;
-        background-image: url(/Portfolio/public/browserFrame.webp);
+        background-image: url(../assets/browserFrame.webp);
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
