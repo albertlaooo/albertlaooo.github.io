@@ -56,6 +56,9 @@
                 <li :class="{ active: currentSection === 'Home' }">
                 <a href="#Home">Home</a>
                 </li>
+                <li :class="{ active: currentSection === 'About' }">
+                <a href="#About">About</a>
+                </li>
                 <li :class="{ active: currentSection === 'Portfolio' }">
                 <a href="#Portfolio">Portfolio</a>
                 </li>
@@ -150,6 +153,12 @@
         transition: ease-in-out 0.2s;
     }
 
+    .nav-links a:hover {
+        text-shadow: 0 0 0px var(--primary-color),
+            0 0 2px var(--primary-color), 
+            0 0 10px var(--primary-color)
+    }
+
     /* Active link styles */
     .nav-links li.active a {
         color: var(--primary-color);
@@ -179,9 +188,9 @@
         opacity: 1;
     }
 
-    /*///////////////////////////////////////////////////////// 
-    ///////////////////🔁 Mobile Layout //////////////////////
-    ////////////////////////////////////////////////////////*/
+/*///////////////////////////////////////////////////////// 
+///////////////////🔁 Mobile Layout //////////////////////
+////////////////////////////////////////////////////////*/
     @media (max-width: 780px) {
         #header-container {
             padding-top: 2.8rem;

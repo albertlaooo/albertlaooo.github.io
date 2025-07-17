@@ -46,6 +46,9 @@
                         <li :class="{ active: currentSection === 'Home' }">
                         <a href="#Home">Home</a>
                         </li>
+                        <li :class="{ active: currentSection === 'About' }">
+                        <a href="#About">About</a>
+                        </li>
                         <li :class="{ active: currentSection === 'Portfolio' }">
                         <a href="#Portfolio">Portfolio</a>
                         </li>
@@ -71,13 +74,14 @@
         height: 100vh;
         width: 100vw;
         z-index: 1000;
+        pointer-events: auto;
     }
 
     #menu-background {
-        opacity: 0.95;
         width: 35vw;
         height: 100vh;
         backdrop-filter: blur(5px);
+        opacity: 0.95;
     }
 
     #menu {

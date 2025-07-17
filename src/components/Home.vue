@@ -65,7 +65,7 @@
     </section>
 </template>
 
-<style>
+<style scoped>
     #home-container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -88,7 +88,8 @@
     #right-section {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        padding-top: 16vh;
+        padding-bottom: 8vh;
         height: 100%;
         margin-left: auto;
         z-index: 0;
@@ -102,7 +103,8 @@
 
     #picture {
         display: block;
-        height: 70vh;
+        height: clamp(300px, 40vw, 650px);
+        min-height: 300px;
         width: auto;
         transform: scale(1);
         transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
@@ -147,8 +149,7 @@
         left: 0;
         display: flex; 
         gap: 1vh; 
-        height: 5.5vh;
-        width: auto;
+        height: clamp(45px,5.5vh,5.5vh);
     }
 
     #facebook-btn, #instagram-btn, #linked-in-btn, #github-btn {
@@ -160,16 +161,15 @@
         filter: drop-shadow(0 0 15px var(--primary-color));
     }
 
-    /*///////////////////////////////////////////////////////// 
-    ///////////////////🔁 Mobile Layout //////////////////////
-    ////////////////////////////////////////////////////////*/
+/*///////////////////////////////////////////////////////// 
+///////////////////🔁 Mobile Layout //////////////////////
+////////////////////////////////////////////////////////*/
     @media (max-width: 780px) {
         #home-container {
-            height: auto;
-            width: auto;
             grid-template-columns: 1fr;
             justify-items: center;
             text-align: center;
+            height: 100%;
         }
 
         #left-section {
@@ -180,13 +180,15 @@
         #right-section {
             order: 1;
             margin-left: 0;
-            margin-top: 34px;
-            margin-bottom: 100px;
+            margin-top: 12vh;
+            margin-bottom: 40px;
             min-width: 0;
+            padding: 0;
         }
 
         #picture {
             height: 32vh;
+            min-height: 0;
         }
 
         h1 {
@@ -210,12 +212,11 @@
         }
 
         #link-btn {
-            position:unset;
+            position:relative;
             display: flex; 
-            gap: 1vh; 
-            height: 6vh;
-            width: auto;
-            margin-top: 50px;
+            gap: 10px; 
+            height: 50px;
+            margin-top: 60px;
             justify-content: center;
         }
     }

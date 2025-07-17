@@ -2,6 +2,7 @@
   import Menu from './components/Menu.vue'
   import Header from './components/Header.vue'
   import Home from './components/Home.vue'
+  import About from './components/About.vue'
   import Portfolio from './components/Portfolio.vue'
   import Skills from './components/Skills.vue'
   import Contact from './components/Contact.vue'
@@ -12,6 +13,7 @@
     <Menu />
     <Header />
     <Home />
+    <About />
     <Portfolio />
     <Skills />
     <Contact />

@@ -9,7 +9,8 @@
 
 <style>
     #skills-container {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         height: 100vh;
         width: 100%;
         background-color: #03d6cc;
