@@ -1,5 +1,9 @@
 <script setup>
-    import { ref } from 'vue'
+    import { ref, onMounted} from 'vue'
+    import { quiztonImages, quiztonCurrentPhoto, instaquizImages, instaquizCurrentPhoto } from '../images'
+    import { isViewImageVisible } from '../store'
+    import { whichPhoto } from '../store'
+
 
     // Scrolls into clicked project card
     const quiztonSection = ref(null)
@@ -28,29 +32,69 @@
         window.open('https://github.com/albertlaooo/QuizWhiz');
     }
 
-
-    // Photo preview function
-    import photo1 from '../assets/portfolio/quizton/1.webp'
-    import photo2 from '../assets/portfolio/quizton/2.webp'
-    import photo3 from '../assets/portfolio/quizton/3.webp'
-    import photo4 from '../assets/portfolio/quizton/4.webp'
-
-    const photos = [photo1, photo2, photo3, photo4]
-    const currentPhoto = ref(0)
-
-    function nextArrow() {
-        if (currentPhoto.value < photos.length - 1) {
-            currentPhoto.value++
-        } else {
-            alert("no photos na")
+    function quiztonNextArrow() {
+        if (quiztonCurrentPhoto.value < quiztonImages.length - 1) {
+            quiztonCurrentPhoto.value++
         }
     }
 
-    function backArrow() {
-        if (currentPhoto.value > 0) {
-            currentPhoto.value--
+    function quiztonBackArrow() {
+        if (quiztonCurrentPhoto.value > 0) {
+            quiztonCurrentPhoto.value--
         }
     }
+
+    function instaquizNextArrow() {
+        if (instaquizCurrentPhoto.value < instaquizImages.length - 1) {
+            instaquizCurrentPhoto.value++
+        }
+    }
+
+    function instaquizBackArrow() {
+        if (instaquizCurrentPhoto.value > 0) {
+            instaquizCurrentPhoto.value--
+        }
+    }
+
+    // swipe function
+    const touchStartX = ref(0)
+
+    function handleTouchStart(event) {
+    touchStartX.value = event.touches[0].clientX
+    }
+
+    function handleTouchEnd(event) {
+    const touchEndX = event.changedTouches[0].clientX
+    const diffX = touchEndX - touchStartX.value
+    const target = event.currentTarget
+    const id = target.id
+
+    const threshold = 30
+
+    if (Math.abs(diffX) > threshold) {
+        const actions = {
+            'quizton-browser-frame': diffX < 0 ? quiztonNextArrow : quiztonBackArrow,
+            'instaquiz-browser-frame': diffX < 0 ? instaquizNextArrow : instaquizBackArrow,
+        };
+
+    const action = actions[id];
+    if (action) action();
+    }
+    }
+
+    // View Image
+    function viewImage(whichImage) {
+        isViewImageVisible.value = true;
+
+        if(whichImage === 'quizton'){ 
+            whichPhoto.value = 'quizton'
+        }
+
+        if(whichImage === 'instaquiz'){
+            whichPhoto.value = 'instaquiz'
+        }
+    }
+
 </script>
 
 <template>
@@ -97,24 +141,26 @@
             <div id="quizton-description">
                 <h2>Quizton</h2>
 
-                <p>
-                    Thesis Project • St. Jude College Dasmariñas, Cavite
-                    Quizton is an AI-powered web application designed to simplify the 
-                    process of quiz creation for educators. With a user-friendly interface, 
-                    teachers can easily upload or drag-and-drop PDF, Word, or other document 
-                    files, and the system will automatically generate quizzes based on their preferred settings.</p>
-                    
-                <p>
-                    Key features include editable quiz outputs, the ability to save, print, or export quizzes 
-                    for offline use, and a built-in library system that stores uploaded lecture materials for 
-                    quick access. Quizton also allows the reuse of previously generated questions to 
-                    streamline future quiz creation. Developed as our capstone thesis project, Quizton aims 
-                    to support digital learning by making assessment creation faster, and more efficient.
-                </p>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <p>
+                        Thesis Project • St. Jude College Dasmariñas, Cavite
+                        Quizton is an AI-powered web application designed to simplify the 
+                        process of quiz creation for educators. With a user-friendly interface, 
+                        teachers can easily upload or drag-and-drop PDF, Word, or other document 
+                        files, and the system will automatically generate quizzes based on their preferred settings.</p>
+                        
+                    <p>
+                        Key features include editable quiz outputs, the ability to save, print, or export quizzes 
+                        for offline use, and a built-in library system that stores uploaded lecture materials for 
+                        quick access. Quizton also allows the reuse of previously generated questions to 
+                        streamline future quiz creation. Developed as our capstone thesis project, Quizton aims 
+                        to support digital learning by making assessment creation faster, and more efficient.
+                    </p>
+                </div>
 
                 <div>
                     <h4>Tech Stack:</h4>
-                    <div style="display: flex; gap: 15px; flex-wrap: wrap; line-height: 0.8rem; margin-top: 12px; margin-bottom: 20px;">
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap; line-height: 0.8rem; margin-top: 12px; margin-bottom: 5px;">
                         <p>Python</p>
                         <p>|</p>
                         <p>HTML</p>
@@ -129,7 +175,7 @@
                         <p>|</p>
                         <p>Render</p>
                         <p>|</p>
-                        <p>Spacy</p>
+                        <p>SpaCy</p>
                     </div>
                 </div>
 
@@ -144,23 +190,109 @@
             </div>
 
             <div id="quizton-preview-container">
+                <h2>Quizton</h2>
                 <div id="quizton-preview">
-                    <svg class="navigation-arrow" @click="backArrow" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="navigation-arrow" @click="quiztonBackArrow" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.3281 7.20276L10.0322 17.5L20.3281 27.7973L23.4226 24.7028L16.2185 17.5L23.4226 10.2973L20.3281 7.20276Z" fill="white"/>
                     </svg>
-                    <div class="browser-frame">
-                         <img class="photo" :src="photos[currentPhoto]">
+                    <div class="browser-frame" :id="'quizton-browser-frame'" @touchstart="handleTouchStart($event)" @touchend="handleTouchEnd($event)" @click="viewImage('quizton')">
+                         <img class="photo" :src="quiztonImages[quiztonCurrentPhoto]">
                     </div>
-                    <svg class="navigation-arrow" @click="nextArrow" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="navigation-arrow" @click="quiztonNextArrow" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.6727 27.7973L24.9685 17.5L14.6727 7.20276L11.5781 10.2973L18.7823 17.5L11.5781 24.7028L14.6727 27.7973Z" fill="white"/>
                     </svg>
                 </div>
-                <h3>• • • •</h3>
+                <div style="display: flex; flex-direction: row; gap: 12px;">
+                    <h3
+                        v-for="(photo, index) in quiztonImages"
+                        :key="index"
+                        class="navigation-dot"
+                        :class="{ active: index === quiztonCurrentPhoto }"
+                        >
+                        •
+                    </h3>
+                </div>
             </div>
         </div>
 
         <div id="instaquiz-section" ref="instaquizSection">
+            <div id="instaquiz-preview-container">
+                <h2>InstaQuiz</h2>
+                <div id="instaquiz-preview">
+                    <svg class="navigation-arrow" @click="instaquizBackArrow" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.3281 7.20276L10.0322 17.5L20.3281 27.7973L23.4226 24.7028L16.2185 17.5L23.4226 10.2973L20.3281 7.20276Z" fill="white"/>
+                    </svg>
+                    <div class="browser-frame" :id="'instaquiz-browser-frame'" @touchstart="handleTouchStart($event)" @touchend="handleTouchEnd($event)" @click="viewImage('instaquiz')">
+                         <img class="photo" :src="instaquizImages[instaquizCurrentPhoto]">
+                    </div>
+                    <svg class="navigation-arrow" @click="instaquizNextArrow" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.6727 27.7973L24.9685 17.5L14.6727 7.20276L11.5781 10.2973L18.7823 17.5L11.5781 24.7028L14.6727 27.7973Z" fill="white"/>
+                    </svg>
+                </div>
+                <div style="display: flex; flex-direction: row; gap: 12px;">
+                    <h3
+                        v-for="(photo, index) in instaquizImages"
+                        :key="index"
+                        class="navigation-dot"
+                        :class="{ active: index === instaquizCurrentPhoto }"
+                        >
+                        •
+                    </h3>
+                </div>
+            </div>
 
+            <div id="instaquiz-description">
+                <h2>InstaQuiz</h2>
+
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                        when an unknown printer took a galley of type and scrambled it to make a type 
+                        specimen book.</p>
+                        
+                    <p>
+                        It has survived not only five centuries, but also the leap into electronic typesetting, 
+                        remaining essentially unchanged. It was popularised in the 1960s with the release of 
+                        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop 
+                        publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    </p>
+                </div>
+
+                <div>
+                    <h4>Tech Stack:</h4>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap; line-height: 0.8rem; margin-top: 12px; margin-bottom: 5px;">
+                        <p>HTML</p>
+                        <p>|</p>
+                        <p>CSS</p>
+                        <p>|</p>
+                        <p>Javascript</p>
+                        <p>|</p>
+                        <p>Firebase</p>
+                        <p>|</p>
+                        <p>Python</p>
+                        <p>|</p>
+                        <p>Flask</p>
+                        <p>|</p>
+                        <p>Flask-CORS</p>
+                        <p>|</p>
+                        <p>spaCy</p>
+                        <p>|</p>
+                        <p>NLTK</p>
+                        <p>|</p>
+                        <p>PyPDF2</p>
+                    </div>
+                </div>
+
+                <div class="external-link" @click="openInstaQuiz">
+                    <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M23.25 16.7917V24.5417C23.25 25.2268 22.9778 25.8839 22.4934 26.3684C22.0089 26.8528 21.3518 27.125 20.6667 27.125H6.45833C5.77319 27.125 5.11611 26.8528 4.63164 26.3684C4.14717 25.8839 3.875 25.2268 3.875 24.5417V10.3333C3.875 9.64819 4.14717 8.99111 4.63164 8.50664C5.11611 8.02217 5.77319 7.75 6.45833 7.75H14.2083" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19.375 3.875H27.125V11.625" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12.9165 18.0833L27.1248 3.875" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h4>View on Github</h4>
+                </div>
+            </div>
         </div>
 
         <div id="quizwhiz-section" ref="quizwhizSection">
@@ -261,7 +393,11 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        gap: 15px;
+        gap: 25px;
+    }
+
+    #quizton-description h2 {
+       line-height: 1.6rem;
     }
 
     #quizton-preview-container {
@@ -272,6 +408,10 @@
         justify-content: center;
         align-items: center;
         padding-left: 10%;
+    }
+
+    #quizton-preview-container h2{
+        display: none;
     }
 
     #quizton-preview {
@@ -294,6 +434,7 @@
         background-size: contain;
         background-position: center;
         position: relative;
+        pointer-events: auto;
     }
 
     .photo {
@@ -303,6 +444,7 @@
         margin-top: 5.4%;
         border-bottom-left-radius: 1.8%;
         border-bottom-right-radius: 1.8%;
+        pointer-events: none;
     }
 
 
@@ -310,13 +452,48 @@
 /////////////////// InstaQuiz //////////////////////////////
 ////////////////////////////////////////////////////////*/
     #instaquiz-section {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: 1fr;
         height: 100vh;
         width: 100vw;
         background-color: var(--bg-color);
+        padding-left: 8.5%;
+        padding-right: 8.5%;
+    }
+
+    #instaquiz-description {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 25px;
+    }
+
+    #instaquiz-description h2 {
+       line-height: 1.6rem;
+    }
+
+    #instaquiz-preview-container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        padding-right: 10%;
+    }
+
+    #instaquiz-preview-container h2{
+        display: none;
+    }
+
+    #instaquiz-preview {
+        display: flex;
+        flex-direction: row;
+        height: 60%;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
     }
 
 /*///////////////////////////////////////////////////////// 
@@ -347,12 +524,13 @@
         }
 
         h1 {
-            margin-bottom: 80px;
+            margin-bottom: 70px;
         }
 
         #projects-container {
             display: flex;
             flex-direction: column;
+            gap: 25px;
         }
 
         .projects-card {
@@ -373,12 +551,13 @@
 
 
     /*///////////////////////////////////////////////////////// 
-    /////////////////// Quizton mobile layout//////////////////////////////
+    /////////////////// Quizton mobile layout//////////////////
     ////////////////////////////////////////////////////////*/
     #quizton-section {
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: auto auto;
+        height: 100%;
         margin-top: 80px;
     }
 
@@ -401,6 +580,19 @@
         order: 1;
     }
 
+    #quizton-preview-container h2{
+        align-self: flex-start;
+        display: block;
+    }
+    
+    #quizton-description {
+        gap: 25px;
+    }
+
+    #quizton-description h2 {
+        display: none;
+    }
+
     #quizton-preview {
         display: flex;
         flex-direction: row;
@@ -408,19 +600,8 @@
         width: 100%;
         justify-content: center;
         align-items: center;
-    }
-
-    .browser-frame {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        aspect-ratio: 16 / 10;
-        background-image: url(../assets/browserFrame.webp);
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-        position: relative;
+        margin-top: 22px;
+        margin-bottom: 16px;
     }
 
     .photo {
@@ -436,6 +617,59 @@
         display: none;
     }
 
+    /*///////////////////////////////////////////////////////// 
+    /////////////////// InstaQuiz mobile layout//////////////////
+    ////////////////////////////////////////////////////////*/
+    #instaquiz-section {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        height: 100%;
+        margin-top: 80px;
     }
+
+    #instaquiz-description {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    #instaquiz-preview-container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        padding-right: 0px;
+    }
+
+    #instaquiz-preview-container h2{
+        align-self: flex-start;
+        display: block;
+    }
+    
+    #instaquiz-description {
+        gap: 25px;
+    }
+
+    #instaquiz-description h2 {
+        display: none;
+    }
+
+    #instaquiz-preview {
+        display: flex;
+        flex-direction: row;
+        height: 60%;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        margin-top: 22px;
+        margin-bottom: 16px;
+    }
+    }
+
+    
 
 </style>

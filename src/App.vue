@@ -1,4 +1,6 @@
 <script setup>
+  import { ref, watch} from 'vue'
+
   import Menu from './components/Menu.vue'
   import Header from './components/Header.vue'
   import Home from './components/Home.vue'
@@ -6,6 +8,10 @@
   import Portfolio from './components/Portfolio.vue'
   import Skills from './components/Skills.vue'
   import Contact from './components/Contact.vue'
+  import ViewImage from './components/ViewImage.vue'
+
+
+
 </script>
 
 <template>
@@ -17,6 +23,7 @@
     <Portfolio />
     <Skills />
     <Contact />
+    <ViewImage />
   </div>
 </template>
 
@@ -26,6 +33,7 @@
     flex-direction: column;
     height: auto;
     overflow-y: auto;
+    overflow-x: hidden;
     scroll-behavior: smooth;
   }
 </style>

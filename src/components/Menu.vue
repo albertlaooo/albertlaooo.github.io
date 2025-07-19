@@ -1,10 +1,19 @@
 <script setup>
-    import { ref, onMounted, onUnmounted, onBeforeUnmount} from 'vue'
+    import { ref, onMounted, onUnmounted, watch} from 'vue'
     import { isNavVisible } from '../store';
 
     function closeMenu(){
         isNavVisible.value = false;
     }
+
+    // Disables scroll
+    watch(isNavVisible, (newVal) => {
+        if (newVal) {
+            document.body.style.overflowY = 'hidden'
+        } else {
+            document.body.style.overflowY = ''
+        }
+    })
     
     /* Detects user current section */
         const currentSection = ref('Home')

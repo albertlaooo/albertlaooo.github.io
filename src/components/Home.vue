@@ -49,16 +49,16 @@
                     <a class="button2" href="#Contact"><i class='bx bx-message-rounded-dots'></i>Let's Talk</a>
                 </div>
                 <div id="link-btn">
-                    <img src="../assets/home/facebook.webp" id="facebook-btn" @click="facebookBtn">
-                    <img src="../assets/home/instagram.webp" id="instagram-btn" @click="instagramBtn">
-                    <img src="../assets/home/linked-in.webp" id="linked-in-btn" @click="linkedInBtn">
-                    <img src="../assets/home/github.webp" id="github-btn" @click="githubBtn">
+                    <img src="../assets/home/facebook.webp" alt="Facebook" id="facebook-btn" @click="facebookBtn">
+                    <img src="../assets/home/instagram.webp" alt="Instagram" id="instagram-btn" @click="instagramBtn">
+                    <img src="../assets/home/linked-in.webp" alt="LinkedIn" id="linked-in-btn" @click="linkedInBtn">
+                    <img src="../assets/home/github.webp" alt="GitHub" id="github-btn" @click="githubBtn">
                 </div>
             </div>
 
             <div id="right-section">
                 <div class="picture-wrapper">
-                    <img id="picture" src="../assets/home/picture.webp">
+                    <img id="picture" alt="picture" src="../assets/home/picture.webp">
                 </div>
             </div>
         </div>
@@ -221,6 +221,8 @@
         #link-btn {
             position:relative;
             display: flex; 
+            margin-left: auto;
+            margin-right: auto;
             gap: 10px; 
             height: 50px;
             margin-top: 60px;

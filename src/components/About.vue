@@ -1,4 +1,3 @@
-<script></script>
 
 <template>
     <section id="About">
