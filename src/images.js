@@ -29,16 +29,3 @@ export const instaquizImages = [
   instaquiz9, instaquiz10, instaquiz11, instaquiz12
 ]
 export const instaquizCurrentPhoto = ref(0)
-
-
-// Preload images
-function preloadAll(imagesArray) {
-    imagesArray.forEach((src) => {
-        const img = new Image()
-        img.src = src
-    })
-}
-onMounted(() => {
-    preloadAll(quiztonImages)
-    preloadAll(instaquizImages)
-})

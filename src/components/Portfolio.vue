@@ -4,7 +4,6 @@
     import { isViewImageVisible } from '../store'
     import { whichPhoto } from '../store'
 
-
     // Scrolls into clicked project card
     const quiztonSection = ref(null)
     const instaquizSection = ref(null)
@@ -20,6 +19,7 @@
         sections[projectName].value.scrollIntoView({behavior: 'smooth'})
     }
 
+    // Open github repositories
     function openQuizton(){
         window.open('https://github.com/albertlaooo/QUIZTON');
     }
@@ -32,31 +32,32 @@
         window.open('https://github.com/albertlaooo/QuizWhiz');
     }
 
-    function quiztonNextArrow() {
-        if (quiztonCurrentPhoto.value < quiztonImages.length - 1) {
-            quiztonCurrentPhoto.value++
+    // Image Preview Navigation Arrow Functions
+    function backArrow(which){
+        if (which === 'quizton'){
+            if (quiztonCurrentPhoto.value > 0) {
+                quiztonCurrentPhoto.value--
+            }
+        } else if(which === 'instaquiz'){
+            if (instaquizCurrentPhoto.value > 0) {
+                instaquizCurrentPhoto.value--
+            }
         }
     }
 
-    function quiztonBackArrow() {
-        if (quiztonCurrentPhoto.value > 0) {
-            quiztonCurrentPhoto.value--
+    function nextArrow(which){
+        if (which === 'quizton'){
+            if (quiztonCurrentPhoto.value < quiztonImages.length - 1) {
+                quiztonCurrentPhoto.value++
+            }
+        } else if(which === 'instaquiz'){
+            if (instaquizCurrentPhoto.value < instaquizImages.length - 1) {
+                instaquizCurrentPhoto.value++
+            }
         }
     }
 
-    function instaquizNextArrow() {
-        if (instaquizCurrentPhoto.value < instaquizImages.length - 1) {
-            instaquizCurrentPhoto.value++
-        }
-    }
-
-    function instaquizBackArrow() {
-        if (instaquizCurrentPhoto.value > 0) {
-            instaquizCurrentPhoto.value--
-        }
-    }
-
-    // swipe function
+    // Image Preview Swipe Function
     const touchStartX = ref(0)
 
     function handleTouchStart(event) {
@@ -73,8 +74,8 @@
 
     if (Math.abs(diffX) > threshold) {
         const actions = {
-            'quizton-browser-frame': diffX < 0 ? quiztonNextArrow : quiztonBackArrow,
-            'instaquiz-browser-frame': diffX < 0 ? instaquizNextArrow : instaquizBackArrow,
+            'quizton-browser-frame': () => diffX < 0 ? nextArrow('quizton') : backArrow('quizton'),
+            'instaquiz-browser-frame': () => diffX < 0 ? nextArrow('instaquiz') : backArrow('instaquiz'),
         };
 
     const action = actions[id];
@@ -82,7 +83,7 @@
     }
     }
 
-    // View Image
+    // Open image modal for selected project
     function viewImage(whichImage) {
         isViewImageVisible.value = true;
 
@@ -192,13 +193,13 @@
             <div id="quizton-preview-container">
                 <h2>Quizton</h2>
                 <div id="quizton-preview">
-                    <svg class="navigation-arrow" @click="quiztonBackArrow" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="navigation-arrow" @click="backArrow('quizton')" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.3281 7.20276L10.0322 17.5L20.3281 27.7973L23.4226 24.7028L16.2185 17.5L23.4226 10.2973L20.3281 7.20276Z" fill="white"/>
                     </svg>
                     <div class="browser-frame" :id="'quizton-browser-frame'" @touchstart="handleTouchStart($event)" @touchend="handleTouchEnd($event)" @click="viewImage('quizton')">
                          <img class="photo" :src="quiztonImages[quiztonCurrentPhoto]">
                     </div>
-                    <svg class="navigation-arrow" @click="quiztonNextArrow" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="navigation-arrow" @click="nextArrow('quizton')" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.6727 27.7973L24.9685 17.5L14.6727 7.20276L11.5781 10.2973L18.7823 17.5L11.5781 24.7028L14.6727 27.7973Z" fill="white"/>
                     </svg>
                 </div>
@@ -219,13 +220,13 @@
             <div id="instaquiz-preview-container">
                 <h2>InstaQuiz</h2>
                 <div id="instaquiz-preview">
-                    <svg class="navigation-arrow" @click="instaquizBackArrow" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="navigation-arrow" @click="backArrow('instaquiz')" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.3281 7.20276L10.0322 17.5L20.3281 27.7973L23.4226 24.7028L16.2185 17.5L23.4226 10.2973L20.3281 7.20276Z" fill="white"/>
                     </svg>
                     <div class="browser-frame" :id="'instaquiz-browser-frame'" @touchstart="handleTouchStart($event)" @touchend="handleTouchEnd($event)" @click="viewImage('instaquiz')">
                          <img class="photo" :src="instaquizImages[instaquizCurrentPhoto]">
                     </div>
-                    <svg class="navigation-arrow" @click="instaquizNextArrow" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="navigation-arrow" @click="nextArrow('instaquiz')" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.6727 27.7973L24.9685 17.5L14.6727 7.20276L11.5781 10.2973L18.7823 17.5L11.5781 24.7028L14.6727 27.7973Z" fill="white"/>
                     </svg>
                 </div>

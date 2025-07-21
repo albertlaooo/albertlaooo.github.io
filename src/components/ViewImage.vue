@@ -6,6 +6,7 @@
     const images = ref([])
     const showCurrentPhoto = ref(0)
 
+
     watch(whichPhoto, (newVal) => {
       if (newVal === 'quizton') {
         images.value = quiztonImages

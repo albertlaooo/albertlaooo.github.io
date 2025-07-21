@@ -88,8 +88,7 @@
     #right-section {
         display: flex;
         flex-direction: column;
-        padding-top: 16vh;
-        padding-bottom: 8vh;
+        justify-content: center;
         height: 100%;
         margin-left: auto;
         z-index: 0;
@@ -103,8 +102,8 @@
 
     #picture {
         display: block;
-        height: clamp(300px, 40vw, 650px);
-        min-height: 300px;
+        height: clamp(450px, 30vw, 650px);
+        min-height: 450px;
         width: auto;
         transform: scale(1);
         transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
@@ -181,11 +180,12 @@
         #right-section {
             order: 1;
             margin-left: 0;
-            margin-top: 12vh;
+            margin-top: 14vh;
             margin-bottom: 40px;
             min-width: 0;
             padding: 0;
             width: 100%;
+            justify-content: unset;
         }
 
         .picture-wrapper { 
@@ -194,7 +194,7 @@
         }
 
         #picture {
-            height: 32vh;
+            height: 30vh;
             min-height: 0;
         }
 
