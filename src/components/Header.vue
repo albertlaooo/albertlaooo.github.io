@@ -105,8 +105,8 @@
         justify-content: space-between;
         padding-left: 8.5%;
         padding-right: 8.5%;
-        padding-top: 3.2rem;
-        padding-bottom: 2.5rem;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
         z-index: 999;
     }
 
@@ -211,9 +211,10 @@
 /*///////////////////////////////////////////////////////// 
 ///////////////////🔁 Mobile Layout //////////////////////
 ////////////////////////////////////////////////////////*/
-    @media (max-width: 780px) {
+    @media (max-width: 980px) {
         #header-container {
-            padding-top: 2.8rem;
+        padding-top: 2.4rem;
+        padding-bottom: 2.4rem;
         }
 
         #not-menu-nav {

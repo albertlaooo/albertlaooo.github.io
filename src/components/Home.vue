@@ -106,11 +106,17 @@
         min-height: 450px;
         width: auto;
         transform: scale(1);
-        transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+        transition: transform 0.5s ease-in-out, filter 0.3s ease-in-out;
     }
 
     #picture:hover {
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 6px var(--primary-color));
+    }
+
+    #picture:active {
         transform: scale(1.1);
+        transition: transform 0.15s ease;
         filter: drop-shadow(0 0 6px var(--primary-color));
     }
 
@@ -163,7 +169,7 @@
 /*///////////////////////////////////////////////////////// 
 ///////////////////🔁 Mobile Layout //////////////////////
 ////////////////////////////////////////////////////////*/
-    @media (max-width: 780px) {
+    @media (max-width: 980px) {
         #home-container {
             grid-template-columns: 1fr;
             justify-items: center;
@@ -180,7 +186,7 @@
         #right-section {
             order: 1;
             margin-left: 0;
-            margin-top: 14vh;
+            margin-top: 12vh;
             margin-bottom: 40px;
             min-width: 0;
             padding: 0;
@@ -194,7 +200,7 @@
         }
 
         #picture {
-            height: 30vh;
+            height: 28vh;
             min-height: 0;
         }
 

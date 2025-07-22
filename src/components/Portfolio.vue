@@ -4,6 +4,7 @@
     import { isViewImageVisible } from '../store'
     import { whichPhoto } from '../store'
 
+
     // Scrolls into clicked project card
     const quiztonSection = ref(null)
     const instaquizSection = ref(null)
@@ -95,6 +96,19 @@
             whichPhoto.value = 'instaquiz'
         }
     }
+
+    // Preload Images
+    function preloadImages(imageArray) {
+    imageArray.forEach(src => {
+        const img = new Image()
+        img.src = src
+    })
+    }
+
+    onMounted(() => {
+    preloadImages(instaquizImages)
+    preloadImages(quiztonImages)
+    })
 
 </script>
 
@@ -329,6 +343,9 @@
         height: 100vh;
         width: 100%;
         background-color: var(--bg-color);
+        padding-top: 80px;
+        padding-left: 8.5%;
+        padding-right: 8.5%;
     }
 
     h1 {
@@ -514,7 +531,7 @@
 /*///////////////////////////////////////////////////////// 
 ///////////////////🔁 Mobile Layout //////////////////////
 ////////////////////////////////////////////////////////*/
-    @media (max-width: 780px) {
+    @media (max-width: 980px) {
         #portfolio-container { 
             padding-top: 40px;
             padding-bottom: 40px;
@@ -535,7 +552,15 @@
         }
 
         .projects-card {
-            width: 70vw;
+            width: 90vw;
+            border: none;
+        }
+
+        .projects-card:hover {
+            box-shadow: none;
+            border: none;
+            transform: none;
+            border-radius: none;
         }
 
         .projects-box {
@@ -547,7 +572,7 @@
         }
 
         .projects-box img {
-            height: 50vw;
+            height: 70vw;
         }
 
 
@@ -559,7 +584,7 @@
         grid-template-columns: 1fr;
         grid-template-rows: auto auto;
         height: 100%;
-        margin-top: 80px;
+        padding-top: 80px;
     }
 
     #quizton-description {
@@ -626,7 +651,7 @@
         grid-template-columns: 1fr;
         grid-template-rows: auto auto;
         height: 100%;
-        margin-top: 80px;
+        padding-top: 80px;
     }
 
     #instaquiz-description {

@@ -35,5 +35,6 @@
     overflow-y: auto;
     overflow-x: hidden;
     scroll-behavior: smooth;
+    box-sizing: border-box;
   }
 </style>

@@ -64,28 +64,66 @@
           showCurrentPhoto.value = instaquizCurrentPhoto.value
         }
       }
+    }
 
+    // Image Preview Swipe Function
+    const touchStartX = ref(0)
+
+    function handleTouchStart(event) {
+    touchStartX.value = event.touches[0].clientX
+    }
+
+    function handleTouchEnd(event) {
+    const touchEndX = event.changedTouches[0].clientX
+    const diffX = touchEndX - touchStartX.value
+    const target = event.currentTarget
+    const id = target.id
+
+    const threshold = 30
+
+    if (Math.abs(diffX) > threshold) {
+        const actions = {
+            'view-image-navigation': () => diffX < 0 ? nextArrow(whichPhoto) : backArrow(whichPhoto)
+        };
+
+    const action = actions[id];
+    if (action) action();
+    }
     }
     
 </script>
 
 <template>
-  <div v-show="isViewImageVisible" id="view-image" @click="closeButton">
-    <svg class="close-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" @click="closeButton">
-      <circle cx="12" cy="12" r="9" class="icon-bg" />
-      <path d="M16 8L8 16" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M8 8L16 16" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <div id="view-image-navigation">
-        <svg class="navigation-arrow" @click="backArrow" @click.stop width="55" height="55" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20.3281 7.20276L10.0322 17.5L20.3281 27.7973L23.4226 24.7028L16.2185 17.5L23.4226 10.2973L20.3281 7.20276Z" fill="white"/>
-        </svg>
-        <img :src="images[showCurrentPhoto]" @click.stop/>
-        <svg class="navigation-arrow" @click="nextArrow" @click.stop width="55" height="55" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M14.6727 27.7973L24.9685 17.5L14.6727 7.20276L11.5781 10.2973L18.7823 17.5L11.5781 24.7028L14.6727 27.7973Z" fill="white"/>
-        </svg>
+  <transition name="fade">
+    <div v-show="isViewImageVisible" id="view-image" @click="closeButton">
+      <svg class="close-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" @click="closeButton">
+        <circle cx="12" cy="12" r="9" class="icon-bg" />
+        <path d="M16 8L8 16" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8 8L16 16" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div id="view-image-navigation" touchstart="handleTouchStart($event)" @touchend="handleTouchEnd($event)">
+          <svg class="navigation-arrow" @click="backArrow" @click.stop width="55" height="55" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20.3281 7.20276L10.0322 17.5L20.3281 27.7973L23.4226 24.7028L16.2185 17.5L23.4226 10.2973L20.3281 7.20276Z" fill="white"/>
+          </svg>
+          <div>
+            <img :src="images[showCurrentPhoto]" @click.stop/>
+            <div style="display: flex; flex-direction: row; gap: 12px; justify-content: center; margin-top: 12px;">
+              <h3
+                  v-for="(photo, index) in images"
+                  :key="index"
+                  class="navigation-dot"
+                  :class="{ active: index === showCurrentPhoto }"
+                  >
+                  •
+              </h3>
+            </div>
+          </div>
+          <svg class="navigation-arrow" @click="nextArrow" @click.stop width="55" height="55" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14.6727 27.7973L24.9685 17.5L14.6727 7.20276L11.5781 10.2973L18.7823 17.5L11.5781 24.7028L14.6727 27.7973Z" fill="white"/>
+          </svg>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <style scoped>
@@ -101,7 +139,6 @@
     justify-content: center;
     align-items: center;
 }
-
 
 #view-image .close-icon {
   position: fixed;
@@ -121,8 +158,6 @@
 }
 
 #view-image img {
-    min-width: 20vw;
-    min-height: 20vw;
     max-width: 80vw;
     max-height: 85vh;
     height: auto;
@@ -139,8 +174,36 @@
   gap: 25px;
 }
 
-@media (max-width: 780px) {
+/* Transition */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.2s ease;
+}
 
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+
+@media (max-width: 780px) {
+  #view-image-navigation {
+    display: grid; 
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+    gap: 0px;
+    justify-items: center;
+  }
+
+  #view-image-navigation :nth-child(2) {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  }
+
+  #view-image-navigation :nth-child(1), #view-image-navigation :nth-child(3) {
+    grid-row: 2;
+  }
+
+  #view-image img {
+    max-height: 70vh;
+   }
 }
 
 </style>

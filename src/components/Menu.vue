@@ -72,7 +72,6 @@
             </div>
         </div>
     </transition>
-
 </template>
 
 <style scoped>
@@ -110,31 +109,6 @@
         left: 25px;
         top: 25px;
         height: 32px;
-    }
-
-    /* Transition */
-    .slide-fade-enter-from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    .slide-fade-enter-active {
-        transition: all 0.4s ease-out;
-    }
-    .slide-fade-enter-to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-
-    .slide-fade-leave-from {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    .slide-fade-leave-active {
-        transition: all 0.3s ease-in;
-    }
-    .slide-fade-leave-to {
-        transform: translateX(100%);
-        opacity: 0;
     }
 
     nav {
@@ -196,5 +170,13 @@
                     0 0 20px var(--primary-color)
     }
 
+    /* Transition */
+    .slide-fade-enter-from, .slide-fade-leave-to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
 
+    .slide-fade-leave-active, .slide-fade-enter-active  {
+        transition: all 0.4s ease-in;
+    }
 </style>

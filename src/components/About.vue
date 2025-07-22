@@ -58,7 +58,7 @@
 /*///////////////////////////////////////////////////////// 
 ///////////////////🔁 Mobile Layout //////////////////////
 ////////////////////////////////////////////////////////*/
-    @media (max-width: 780px)  {
+    @media (max-width: 980px)  {
         #about-container {
             display: grid;
             grid-template-columns: 1fr;
@@ -66,7 +66,6 @@
             height: 100%;
             gap: 30px;
             padding-top: 80px;
-            padding-bottom: 80px;
         }
 
         #image-container {
