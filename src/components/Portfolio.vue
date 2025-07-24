@@ -85,14 +85,14 @@
     }
 
     // Open image modal for selected project
-    function viewImage(whichImage) {
+    function viewImage(which) {
         isViewImageVisible.value = true;
 
-        if(whichImage === 'quizton'){ 
+        if(which === 'quizton'){ 
             whichPhoto.value = 'quizton'
         }
 
-        if(whichImage === 'instaquiz'){
+        if(which === 'instaquiz'){
             whichPhoto.value = 'instaquiz'
         }
     }

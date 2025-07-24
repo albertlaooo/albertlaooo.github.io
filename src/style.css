@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: sans-serif;
   background-color: var(--bg-color);
   color: #333;
   line-height: 1.6;
@@ -22,7 +22,7 @@ body {
 :root {
   --primary-color: #01EEFE;
   --bg-color: #20242D;
-  --fg-color: #282E3A;
+  --fg-color: #323846;
   --text-color: #FFFFFF;
   --text-secondary-color: #d4d4d4;
   --border-radius: 0.5rem;
@@ -34,13 +34,13 @@ body {
 
 /* text default */
 h1 {
-  font-size: 3.5rem;
+  font-size: clamp(3rem, 3.5vw, 3.5rem);
   color: var(--text-color);
   line-height: 1.3;
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: clamp(1.8rem, 2vw, 2rem);
   color: var(--text-color);
 }
 
@@ -55,7 +55,7 @@ h4 {
 }
 
 p {
-  font-size: 1rem;
+  font-size: clamp(0.90rem, 1vw, 1rem);
   color: var(--text-secondary-color);
 }
 
@@ -169,6 +169,7 @@ ul {
   font-size: 1.4rem;
   color: var(--text-color);
   transition: 0.1s ease-in-out;
+  user-select: none;
 }
 
 .navigation-dot.active {

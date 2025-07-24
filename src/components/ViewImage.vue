@@ -2,21 +2,31 @@
     import { ref, watch } from 'vue'
     import { isViewImageVisible, whichPhoto} from '../store';
     import { quiztonImages, quiztonCurrentPhoto, instaquizImages, instaquizCurrentPhoto } from '../images'
+    import { oracleImages, oracleCurrentImages, dictImages, dictCurrentImages, ctImages, ctCurrentImages, codefest1Images, codefest1CurrentImages, codefest2Images, codefest2CurrentImages, codefest3Images, codefest3CurrentImages, } from '../images';
 
     const images = ref([])
     const showCurrentPhoto = ref(0)
 
+  const photoMap = {
+    'quizton': [quiztonImages, quiztonCurrentPhoto],
+    'instaquiz': [instaquizImages, instaquizCurrentPhoto],
+    'oracle-cert': [oracleImages, oracleCurrentImages],
+    'dict-cert': [dictImages, dictCurrentImages],
+    'ct-cert': [ctImages, ctCurrentImages],
+    'codefest1': [codefest1Images, codefest1CurrentImages],
+    'codefest2': [codefest2Images, codefest2CurrentImages],
+    'codefest3': [codefest3Images, codefest3CurrentImages],
+  };
 
     watch(whichPhoto, (newVal) => {
-      if (newVal === 'quizton') {
-        images.value = quiztonImages
-        showCurrentPhoto.value = quiztonCurrentPhoto.value
-      }
+      if (photoMap[newVal]) {
+          const [imgs, current] = photoMap[newVal];
+          images.value = imgs;
+          showCurrentPhoto.value = current.value;
+      } 
 
-      if (newVal === 'instaquiz') {
-        images.value = instaquizImages
-        showCurrentPhoto.value = instaquizCurrentPhoto.value
-      }
+      console.log(whichPhoto.value)
+      console.log(codefest1CurrentImages.value)
     })
 
 
@@ -35,34 +45,56 @@
     }
 
     function backArrow(){
-      if(whichPhoto.value === 'quizton'){
-        if (quiztonCurrentPhoto.value > 0) { 
-          quiztonCurrentPhoto.value--
-          showCurrentPhoto.value = quiztonCurrentPhoto.value
-        }
+      
+      const backArrowMap = {
+        quizton: quiztonCurrentPhoto,
+        instaquiz: instaquizCurrentPhoto,
+        'oracle-cert': oracleCurrentImages,
+        'dict-cert': dictCurrentImages,
+        'ct-cert': ctCurrentImages,
+        codefest1: codefest1CurrentImages,
+        codefest2: codefest2CurrentImages,
+        codefest3: codefest3CurrentImages,
+      };
+
+      const current = backArrowMap[whichPhoto.value];
+
+      if (current && current.value > 0) {
+        current.value--;
+        showCurrentPhoto.value = current.value;
       }
 
-      if(whichPhoto.value === 'instaquiz'){
-        if (instaquizCurrentPhoto.value > 0) { 
-          instaquizCurrentPhoto.value--
-          showCurrentPhoto.value = instaquizCurrentPhoto.value
-        }
-      }
     }
 
     function nextArrow() {
-      if(whichPhoto.value === 'quizton'){
-        if (quiztonCurrentPhoto.value < quiztonImages.length - 1) {
-          quiztonCurrentPhoto.value++
-          showCurrentPhoto.value = quiztonCurrentPhoto.value
-        }
-      }
+      const nextArrowMap = {
+        quizton: quiztonCurrentPhoto,
+        instaquiz: instaquizCurrentPhoto,
+        'oracle-cert': oracleCurrentImages,
+        'dict-cert': dictCurrentImages,
+        'ct-cert': ctCurrentImages,
+        codefest1: codefest1CurrentImages,
+        codefest2: codefest2CurrentImages,
+        codefest3: codefest3CurrentImages,
+      };
 
-      else if(whichPhoto.value === 'instaquiz'){
-        if (instaquizCurrentPhoto.value < instaquizImages.length - 1) {
-          instaquizCurrentPhoto.value++
-          showCurrentPhoto.value = instaquizCurrentPhoto.value
-        }
+      const imageArrayMap = {
+        quizton: quiztonImages,
+        instaquiz: instaquizImages,
+        'oracle-cert': oracleImages,
+        'dict-cert': dictImages,
+        'ct-cert': ctImages,
+        codefest1: codefest1Images,
+        codefest2: codefest2Images,
+        codefest3: codefest3Images,
+      };
+
+      const current = nextArrowMap[whichPhoto.value];
+      const currentImages = imageArrayMap[whichPhoto.value];
+
+      if (current && current.value < currentImages.length - 1) {
+        current.value++;
+        showCurrentPhoto.value = current.value;
       }
     }
 
@@ -101,7 +133,7 @@
         <path d="M16 8L8 16" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M8 8L16 16" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      <div id="view-image-navigation" touchstart="handleTouchStart($event)" @touchend="handleTouchEnd($event)">
+      <div id="view-image-navigation" @touchstart="handleTouchStart($event)" @touchend="handleTouchEnd($event)">
           <svg class="navigation-arrow" @click="backArrow" @click.stop width="55" height="55" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M20.3281 7.20276L10.0322 17.5L20.3281 27.7973L23.4226 24.7028L16.2185 17.5L23.4226 10.2973L20.3281 7.20276Z" fill="white"/>
           </svg>

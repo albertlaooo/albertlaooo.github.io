@@ -43,7 +43,9 @@
                 <h2>Hi, {{ greeting }}</h2>
                 <h1>I'm Albert Lao, a</h1>
                 <h2 style="color: var(--primary-color);">Web Developer</h2>
-                <p>I'm currently a 4th-year Bachelor of Science in Computer Science student with a strong passion for creating innovative and user-centered digital solutions. I enjoy bringing ideas to life and transforming concepts into functional and intuitive experiences.</p>
+                <p>I'm currently a 4th-year Bachelor of Science in Computer Science student with a strong passion for creating 
+                    innovative and user-centered digital solutions. I enjoy bringing ideas to life and transforming concepts 
+                    into functional and intuitive experiences.</p>
                 <div id="button-container">
                     <button class="button1" @click="downloadResume"><i class='bx bx-cloud-download' ></i>Resume</button>
                     <a class="button2" href="#Contact"><i class='bx bx-message-rounded-dots'></i>Let's Talk</a>
@@ -70,6 +72,7 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         height: 100vh;
+        min-height: 750px;
         width: 100vw;
         padding-left: 8.5%;
         padding-right: 8.5%;
@@ -89,7 +92,6 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        height: 100%;
         margin-left: auto;
         z-index: 0;
     }
@@ -102,9 +104,8 @@
 
     #picture {
         display: block;
-        height: clamp(450px, 30vw, 650px);
-        min-height: 450px;
-        width: auto;
+        width: clamp(400px, 30vw, 650px);
+        height: auto;
         transform: scale(1);
         transition: transform 0.5s ease-in-out, filter 0.3s ease-in-out;
     }
@@ -130,7 +131,7 @@
     }
 
     h1 {
-        line-height: 7rem;
+        line-height: clamp(6.4rem, 7vw, 7rem);
     }
 
     h2 {
@@ -138,7 +139,7 @@
     }
 
     p {
-        width: 550px;
+        width:clamp(450px, 28vw, 550px);
         margin-top: 35px;
         margin-bottom: 25px;
     }
@@ -150,15 +151,16 @@
 
     #link-btn {
         position: absolute;
-        bottom: 20px; 
-        left: 0;
+        bottom: 20px;
         display: flex; 
-        gap: 1vh; 
-        height: clamp(45px,5.5vh,5.5vh);
+        gap: 8px; 
+        width: auto;
     }
 
     #facebook-btn, #instagram-btn, #linked-in-btn, #github-btn {
         transition: ease-in-out 0.2s;
+        width: 55px;
+        height: 55px;
     }
 
     #facebook-btn:hover, #instagram-btn:hover, #linked-in-btn:hover, #github-btn:hover {
@@ -175,6 +177,9 @@
             justify-items: center;
             text-align: center;
             height: 100%;
+            align-items: center;
+            padding-top: 80px;
+            min-height: 0px;
         }
 
         #left-section {
@@ -186,12 +191,10 @@
         #right-section {
             order: 1;
             margin-left: 0;
-            margin-top: 12vh;
-            margin-bottom: 40px;
+            margin-top: 25px;
+            margin-bottom: 35px;
             min-width: 0;
             padding: 0;
-            width: 100%;
-            justify-content: unset;
         }
 
         .picture-wrapper { 
@@ -200,39 +203,41 @@
         }
 
         #picture {
-            height: 28vh;
-            min-height: 0;
+            width: clamp(250px, 35vw, 35vw);
         }
 
         h1 {
-            font-size: 2.5rem;
-            line-height: 5.5rem;
+            font-size: clamp(2.5rem, 5.2vw, 5.2rem);
+            line-height: clamp(5.5rem, 10vw, 10rem);
             white-space: nowrap;
         }
 
         h2 {
-            font-size: 1.6rem;
+            font-size: clamp(1.6rem, 3.2vw, 3.2rem);
         }
 
         p {
+            font-size: clamp(0.90rem, 1.6vw, 1.6rem);
             width: 100%;
-            margin-top: 35px;
-            margin-bottom: 25px;
+            max-width: 650px;
+            min-width: 0;
+            align-self: center;
         }
 
         #button-container {
             justify-content: center;
+            margin-bottom: 85px;
         }
 
         #link-btn {
-            position:relative;
+            position:absolute;
             display: flex; 
-            margin-left: auto;
-            margin-right: auto;
-            gap: 10px; 
-            height: 50px;
-            margin-top: 60px;
+            left: 50%;
+            right: 50%;
+            bottom: 0%;
+            gap: 10px;
             justify-content: center;
+            margin-top: 50px;
         }
     }
 

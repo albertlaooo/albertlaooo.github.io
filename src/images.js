@@ -29,3 +29,47 @@ export const instaquizImages = [
   instaquiz9, instaquiz10, instaquiz11, instaquiz12
 ]
 export const instaquizCurrentPhoto = ref(0)
+
+// Certificates and Achievements Images
+import oracleCert from './assets/about/certificates/oracle-cert.webp'
+import dictCert from './assets/about/certificates/dict-cert.webp'
+import ctCert from './assets/about/certificates/ct-cert.webp'
+import pic1 from './assets/about/achievements/pic1.webp'
+import cert1 from './assets/about/achievements/cert1.webp'
+import pic2 from './assets/about/achievements/pic2.webp'
+import cert2 from './assets/about/achievements/cert2.webp'
+import pic3 from './assets/about/achievements/pic3.webp'
+import cert3 from './assets/about/achievements/cert3.webp'
+
+export const oracleImages = [
+  oracleCert
+]
+export const oracleCurrentImages = ref(0)
+
+export const dictImages = [
+    dictCert
+]
+export const dictCurrentImages = ref(0)
+
+export const ctImages = [
+  ctCert
+]
+export const ctCurrentImages = ref(0)
+
+export const codefest1Images = [
+  pic1,
+  cert1
+]
+export const codefest1CurrentImages = ref(0)
+
+export const codefest2Images = [
+  pic2,
+  cert2
+]
+export const codefest2CurrentImages = ref(0)
+
+export const codefest3Images = [
+  pic3,
+  cert3
+]
+export const codefest3CurrentImages = ref(0)
