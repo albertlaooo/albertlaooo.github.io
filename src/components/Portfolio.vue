@@ -116,8 +116,10 @@
     <div id="portfolio-container">
         <section id="Portfolio">
             <div id="portfolio-overview-container">
-                <p>Some of my recent works</p>
-                <h1>PROJECTS</h1>
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <p>Some of my recent works</p>
+                    <h1 style="color: var(--primary-color);">PROJECTS</h1>
+                </div>
 
                 <div id="projects-container">
                     <!-- Quizton card -->
@@ -341,17 +343,15 @@
         align-items: center;
         justify-content: center;
         height: 100vh;
+        min-height: 850px;
         width: 100%;
         background-color: var(--bg-color);
-        padding-top: 80px;
         padding-left: 8.5%;
         padding-right: 8.5%;
+        gap: 6vw;
     }
 
-    h1 {
-        color: var(--primary-color); 
-        margin-bottom: 100px;
-    }
+    
 
     #projects-container {
         display: flex;
@@ -531,18 +531,14 @@
 /*///////////////////////////////////////////////////////// 
 ///////////////////🔁 Mobile Layout //////////////////////
 ////////////////////////////////////////////////////////*/
-    @media (max-width: 980px) {
+    @media (max-width: 970px) {
         #portfolio-container { 
-            padding-top: 40px;
+            padding-top: 80px;
             padding-bottom: 40px;
         }
 
         #portfolio-overview-container {
             height: 100%;
-        }
-
-        h1 {
-            margin-bottom: 70px;
         }
 
         #projects-container {

@@ -72,7 +72,7 @@ function viewImage(which) {
         <div id="about-container">
             <div id="image-container">
                 <div id="m-aboutme-text">
-                    <h2>About</h2><h2 style="color: var(--primary-color);">Me</h2>
+                    <h2 class="custom-underline" style="font-style: italic;">A little bit about me</h2>
                 </div>
 
                 <img src="../assets/about/image.webp">
@@ -81,9 +81,9 @@ function viewImage(which) {
             <div id="description-container">
 
                 <div id="aboutme-text">
-                    <h2>About</h2><h2 style="color: var(--primary-color);">Me</h2>
+                    <h2 style="font-style: italic;">A little bit about me</h2>
                 </div>
-                <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
+                <div id="aboutme-text2">
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                         Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
                         when an unknown printer took a galley of type and scrambled it to make a type 
@@ -100,10 +100,13 @@ function viewImage(which) {
             </div>
         </div>
         <div id="certificate-achievements-container">
-            <h2 style=" color: var(--primary-color);">Certificates and Achievements</h2>
+            <div style="display: flex; flex-direction: column; align-self: flex-start; gap: 2px;">
+                <h2 style=" color: var(--primary-color);">Learning. Competing. Growing.</h2>
+                <p style="font-style: italic;">From training grounds to the winner’s circle — here’s my journey so far.</p>
+            </div>
             <div id="certificate-achivement-grid">
                 <div id="certificate-container">
-                    <p style="margin-bottom: 15px;">Certificates</p>
+                    <p style="margin-bottom: 15px;">Certificates & Trainings</p>
                     <div class="card-container">
                         <div class="card" :class="{ active: activeCards.includes('oracle') }" @click="openCardContent('oracle')">
                             <img src="../assets/about/certificates/oracle.webp"/>
@@ -145,7 +148,7 @@ function viewImage(which) {
                 </div>
 
                 <div id="achievement-container">
-                    <p style="margin-bottom: 15px;">Achievements</p>
+                    <p style="margin-bottom: 15px;">Awards & Achievements</p>
                     <div class="card-container">
                         <div class="card" :class="{ active: activeCards.includes('codefest1') }" @click="openCardContent('codefest1')">
                             <img src="../assets/about/achievements/pic1.webp"/>
@@ -205,11 +208,12 @@ function viewImage(which) {
         padding-right: 8.5%;
         background-color: var(--bg-color);
         align-items: center;
+        gap: 125px;
     }
 
     #image-container {
         display: flex;
-        justify-content: center;
+        justify-content: end;
     }
 
     #m-aboutme-text {
@@ -222,6 +226,13 @@ function viewImage(which) {
         flex-direction: row;
     }
 
+    #aboutme-text2 {
+        display: flex; 
+        flex-direction: 
+        column; gap: 15px;
+        margin-top: 25px; width: 30vw;
+    }
+
     img {
         height: clamp(380px, 30vw, 30vw);
         justify-self: center;
@@ -231,7 +242,7 @@ function viewImage(which) {
         display: flex;
         flex-direction: column;
         height: auto;
-        min-height: 100vh;
+        min-height: 70vh;
         width: 100vw;
         padding-left: 8.5%;
         padding-right: 8.5%;
@@ -333,7 +344,7 @@ function viewImage(which) {
 /*///////////////////////////////////////////////////////// 
 ///////////////////🔁 Mobile Layout //////////////////////
 ////////////////////////////////////////////////////////*/
-    @media (max-width: 980px)  {
+    @media (max-width: 970px)  {
         #about-container {
             display: grid;
             grid-template-columns: 1fr;
@@ -346,11 +357,13 @@ function viewImage(which) {
         #image-container {
             flex-direction: column;
             gap: 25px;
+            align-items: center;
         }
 
         img {
-            width: 100%;
+            width: 80%;
             height: auto;
+            margin-top: 4px;
         }
 
         #description-container {
@@ -360,13 +373,22 @@ function viewImage(which) {
         }
 
         #m-aboutme-text{
-            display: flex; 
-            gap: 9px;
+            display: flex;
+            justify-content: center;
+        }
 
+        #m-aboutme-text h2{
+            font-size: x-large;
         }
 
         #aboutme-text {
             display: none;
+        }
+
+    
+        #aboutme-text2 {
+            width: auto;
+            margin-top: 6px;
         }
 
         p {
@@ -375,20 +397,48 @@ function viewImage(which) {
 
         #certificate-achievements-container{
             padding-top: 80px;
-            text-align: center;
-            
+            gap: 12 vw;
+        }
+        #certificate-achievements-container h2{
+            font-size: clamp(1.5rem, 3vw, 3rem);
+        }
+
+        #certificate-achievements-container p{
+            width: clamp(280px, 40vw, 350px);
         }
 
         #certificate-achivement-grid {
             display: flex;
             flex-direction: column;
+            gap: 4vw;
         }
+
+        .card:hover {
+            border: 2px solid transparent;
+            transition: none;
+        }
+
+        .card:hover p{
+            color: var(--text-secondary-color);
+            transition: none;
+        }
+
+        .card.active {
+            border: 2px solid var(--primary-color);
+            transition: 0.2s ease;
+        }
+
+        .card.active p{
+            color: var(--primary-color);
+            transition: 0.2s ease;
+        }
+
 
         .card-content img {
         width: 35vw;
         height: auto;
         cursor: pointer;
-    }
+        }
 
     }
 </style>

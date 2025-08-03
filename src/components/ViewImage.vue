@@ -215,7 +215,8 @@
   opacity: 0;
 }
 
-@media (max-width: 780px) {
+@media (max-width: 970px) {
+
   #view-image-navigation {
     display: grid; 
     grid-template-columns: 1fr 1fr;
@@ -235,6 +236,12 @@
 
   #view-image img {
     max-height: 70vh;
+   }
+}
+
+@media (max-height: 450px) {
+    #view-image img {
+    max-height: 60vh;
    }
 }
 

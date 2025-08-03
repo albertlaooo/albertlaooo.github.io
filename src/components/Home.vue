@@ -171,7 +171,7 @@
 /*///////////////////////////////////////////////////////// 
 ///////////////////🔁 Mobile Layout //////////////////////
 ////////////////////////////////////////////////////////*/
-    @media (max-width: 980px) {
+    @media (max-width: 970px) {
         #home-container {
             grid-template-columns: 1fr;
             justify-items: center;
@@ -206,6 +206,17 @@
             width: clamp(250px, 35vw, 35vw);
         }
 
+        #picture:hover {
+            transform: unset;
+            filter: unset;
+        }
+
+        #picture:active {
+            transform: scale(1.08);
+            transition: transform 0.15s ease;
+            filter: drop-shadow(0 0 6px var(--primary-color));
+        }
+
         h1 {
             font-size: clamp(2.5rem, 5.2vw, 5.2rem);
             line-height: clamp(5.5rem, 10vw, 10rem);
@@ -227,6 +238,19 @@
         #button-container {
             justify-content: center;
             margin-bottom: 85px;
+        }
+
+        .button1:hover {
+            box-shadow: none;
+        }
+
+        .button1:active {
+            transform: scale(0.92);
+            transition: ease-in-out 0.1s;
+        }
+
+        #facebook-btn:hover, #instagram-btn:hover, #linked-in-btn:hover, #github-btn:hover {
+            filter: none;
         }
 
         #link-btn {

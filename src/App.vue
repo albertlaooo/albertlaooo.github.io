@@ -8,6 +8,7 @@
   import Portfolio from './components/Portfolio.vue'
   import Skills from './components/Skills.vue'
   import Contact from './components/Contact.vue'
+  import Footer from './components/Footer.vue'
   import ViewImage from './components/ViewImage.vue'
 
 
@@ -23,6 +24,7 @@
     <Portfolio />
     <Skills />
     <Contact />
+    <Footer />
     <ViewImage />
   </div>
 </template>

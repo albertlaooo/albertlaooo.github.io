@@ -110,6 +110,12 @@ ul {
   box-shadow: 0 0px 12px var(--primary-color);
 }
 
+.button1:active {
+  transform: scale(0.92);
+  transition: ease-in-out 0.1s;
+}
+
+
 .button2 {
   display: flex;
   align-items: center;
