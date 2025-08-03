@@ -247,7 +247,7 @@ function viewImage(which) {
         padding-left: 8.5%;
         padding-right: 8.5%;
         align-items: center;
-        gap: 5vw;
+        gap:4.5vw;
         justify-content: center;
         align-items: center;
     }
@@ -397,7 +397,7 @@ function viewImage(which) {
 
         #certificate-achievements-container{
             padding-top: 80px;
-            gap: 12 vw;
+            gap: 10vw;
         }
         #certificate-achievements-container h2{
             font-size: clamp(1.5rem, 3vw, 3rem);

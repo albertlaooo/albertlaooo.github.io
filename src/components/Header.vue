@@ -213,8 +213,8 @@
 ////////////////////////////////////////////////////////*/
     @media (max-width: 970px) {
         #header-container {
-        padding-top: 2.4rem;
-        padding-bottom: 2.4rem;
+            padding-top: 2.4rem;
+            padding-bottom: 2.4rem;
         }
 
         #not-menu-nav {

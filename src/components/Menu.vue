@@ -154,9 +154,7 @@
 
     .nav-links a:hover {
         transition: ease-in-out 0.2s;
-        text-shadow: 0 0 0px var(--primary-color),
-                    0 0 2px var(--primary-color), 
-                    0 0 20px var(--primary-color)
+        text-shadow: none;
     }
 
     /* Active link styles */

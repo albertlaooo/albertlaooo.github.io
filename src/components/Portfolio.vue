@@ -156,9 +156,9 @@
             
         <div id="quizton-section" ref="quiztonSection">
             <div id="quizton-description">
-                <h2>Quizton</h2>
+                <h2 class="app-title">Quizton</h2>
 
-                <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="description">
                     <p>
                         Thesis Project • St. Jude College Dasmariñas, Cavite
                         Quizton is an AI-powered web application designed to simplify the 
@@ -206,8 +206,9 @@
                 </div>
             </div>
 
+            
+            <h2 class="m-app-title">Quizton</h2>
             <div id="quizton-preview-container">
-                <h2>Quizton</h2>
                 <div id="quizton-preview">
                     <svg class="navigation-arrow" @click="backArrow('quizton')" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.3281 7.20276L10.0322 17.5L20.3281 27.7973L23.4226 24.7028L16.2185 17.5L23.4226 10.2973L20.3281 7.20276Z" fill="white"/>
@@ -219,7 +220,7 @@
                         <path d="M14.6727 27.7973L24.9685 17.5L14.6727 7.20276L11.5781 10.2973L18.7823 17.5L11.5781 24.7028L14.6727 27.7973Z" fill="white"/>
                     </svg>
                 </div>
-                <div style="display: flex; flex-direction: row; gap: 12px;">
+                <div class="navigation-dots">
                     <h3
                         v-for="(photo, index) in quiztonImages"
                         :key="index"
@@ -233,8 +234,8 @@
         </div>
 
         <div id="instaquiz-section" ref="instaquizSection">
+            <h2 class="m-app-title">InstaQuiz</h2>
             <div id="instaquiz-preview-container">
-                <h2>InstaQuiz</h2>
                 <div id="instaquiz-preview">
                     <svg class="navigation-arrow" @click="backArrow('instaquiz')" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.3281 7.20276L10.0322 17.5L20.3281 27.7973L23.4226 24.7028L16.2185 17.5L23.4226 10.2973L20.3281 7.20276Z" fill="white"/>
@@ -246,7 +247,7 @@
                         <path d="M14.6727 27.7973L24.9685 17.5L14.6727 7.20276L11.5781 10.2973L18.7823 17.5L11.5781 24.7028L14.6727 27.7973Z" fill="white"/>
                     </svg>
                 </div>
-                <div style="display: flex; flex-direction: row; gap: 12px;">
+                <div class="navigation-dots">
                     <h3
                         v-for="(photo, index) in instaquizImages"
                         :key="index"
@@ -259,9 +260,9 @@
             </div>
 
             <div id="instaquiz-description">
-                <h2>InstaQuiz</h2>
+                <h2 class="app-title">InstaQuiz</h2>
 
-                <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="description">
                     <p>
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                         Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
@@ -351,8 +352,6 @@
         gap: 6vw;
     }
 
-    
-
     #projects-container {
         display: flex;
         flex-direction: row;
@@ -393,6 +392,29 @@
         margin-bottom: 10px;
     }
 
+    .description {
+        display: flex; 
+        flex-direction: column; 
+        gap: 15px; 
+        overflow-y: auto; 
+        height: 15vw;
+        padding-right: 15px;
+    }
+
+    .app-title {
+       line-height: 1.6rem;
+    }
+
+    .m-app-title {
+        display: none;
+    }
+
+    .navigation-dots {
+        display: flex; 
+        flex-direction: row; 
+        gap: 12px;
+    }
+
 /*///////////////////////////////////////////////////////// 
 /////////////////// Quizton //////////////////////////////
 ////////////////////////////////////////////////////////*/
@@ -414,10 +436,6 @@
         gap: 25px;
     }
 
-    #quizton-description h2 {
-       line-height: 1.6rem;
-    }
-
     #quizton-preview-container {
         display: flex;
         flex-direction: column;
@@ -426,10 +444,6 @@
         justify-content: center;
         align-items: center;
         padding-left: 10%;
-    }
-
-    #quizton-preview-container h2{
-        display: none;
     }
 
     #quizton-preview {
@@ -487,10 +501,6 @@
         gap: 25px;
     }
 
-    #instaquiz-description h2 {
-       line-height: 1.6rem;
-    }
-
     #instaquiz-preview-container {
         display: flex;
         flex-direction: column;
@@ -499,10 +509,6 @@
         justify-content: center;
         align-items: center;
         padding-right: 10%;
-    }
-
-    #instaquiz-preview-container h2{
-        display: none;
     }
 
     #instaquiz-preview {
@@ -539,6 +545,7 @@
 
         #portfolio-overview-container {
             height: 100%;
+            gap: 10vw;
         }
 
         #projects-container {
@@ -571,7 +578,23 @@
             height: 70vw;
         }
 
+        .description { 
+            overflow-y: hidden;
+            height: auto;
+        }
 
+        .app-title {
+            display: none;
+        }
+
+        .m-app-title {
+            align-self: flex-start;
+            display: block;
+        }
+
+        .navigation-dots {
+            margin-top: 15px;
+        }
     /*///////////////////////////////////////////////////////// 
     /////////////////// Quizton mobile layout//////////////////
     ////////////////////////////////////////////////////////*/
@@ -601,18 +624,9 @@
         padding-left: 0px;
         order: 1;
     }
-
-    #quizton-preview-container h2{
-        align-self: flex-start;
-        display: block;
-    }
     
     #quizton-description {
         gap: 25px;
-    }
-
-    #quizton-description h2 {
-        display: none;
     }
 
     #quizton-preview {

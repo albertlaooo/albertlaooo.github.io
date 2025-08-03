@@ -178,7 +178,7 @@
                         <button class="button1" @click="downloadResume" style="margin-top: 8px; margin-bottom: 6px;"><i class='bx bx-cloud-download' ></i>Resume</button>
                     </div>
 
-                    <p style="font-style: italic; margin-bottom: 63%;">Thank you and have a nice day ahead!</p>
+                    <p id="farewell-message">Thank you and have a nice day ahead!</p>
                 </div>
             </div>
         </div>
@@ -294,6 +294,11 @@
         filter: drop-shadow(0 0 15px var(--primary-color));
     }
 
+    #farewell-message {
+        font-style: italic;
+        margin-bottom: 63%;
+    }
+
     #thankyou-message-container {
         position: fixed; 
         display: flex; 
@@ -329,7 +334,11 @@
         }
 
         #right-section {
-            justify-content: start; 
+            justify-content: start;
+        }
+
+        #farewell-message {
+            margin-bottom: 80px;
         }
 
         #contact-inputs {
@@ -350,8 +359,22 @@
             transition: ease-in-out 0.1s;
         }
 
-        #right-section p:last-of-type {
-            margin-bottom: 50px;
+        #thankyou-message-box {
+            display: flex; 
+            flex-direction: row; 
+            gap:8px; 
+            width: 70vw;
+            max-width: 450px;
+            max-height: 200px;
+            height: 32vw; 
+            background-color: var(--fg-color); 
+            justify-content: center; 
+            align-items: center; 
+            border-radius: 8px;
+        }
+
+        #thankyou-message-box h2 {
+            font-size: 1.7rem;
         }
     }
 </style>
